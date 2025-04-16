@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>JobWale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <!-- Font Awesome Link for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+  <nav>
+    <!-- Checkbox for toggling menu -->
+    <input type="checkbox" id="check">
+
+    <!-- Menu icon -->
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+
+    <!-- Site logo -->
+    <label class="logo">JobWale</label>
+
+    <!-- Navigation links -->
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'profile' %}">Profile</a></li>
+      <li><a href="{% url 'feed' %}">Feed</a></li>
+      <li><a href="{% url 'post' %}">Create Post</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Section for image -->
+   {% block content %}
+   
+   {% endblock content %}
+  <section></section>
+  <footer>
+    <div class="content">
+      <div class="left box">
+        <div class="upper">
+          <div class="topic">About us</div>
+          <p>We provide you the platform which can help you to connect with each other and share job opportunities that you find the best for your peers.</p>
+        </div>
+        <div class="lower">
+          <div class="topic">Contact us</div>
+          <div class="phone">
+            <a href="#"><i class="fas fa-phone-volume"></i>+91-9506256011</a>
+          </div>
+          <div class="email">
+            <a href="#"><i class="fas fa-envelope"></i>pandayh946@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="middle box">
+        <div class="topic">Our Services</div>
+        <div><a href="{% url 'home' %}">Home</a></div>
+        <div><a href="{% url 'profile' %}">Profile</a></div>
+        <div><a href="{% url 'feed' %}">Feed</a></div>
+        <div><a href="{% url 'post' %}">Create Post</a></div>
+        <div><a href="{% url 'logout' %}">Logout</a></div>
+      </div>
+      <div class="right box">
+        <div class="topic">Subscribe us</div>
+          <input type="submit" name="" value="Join">
+          <div class="media-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <p>Copyright © 2025 <a href="#">Jobwale</a> All rights reserved</p>
+    </div>
+  </footer>
+</body>
+
+</html>

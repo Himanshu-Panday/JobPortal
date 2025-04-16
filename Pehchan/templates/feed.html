@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobWale Feed</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.detail-card {
+    flex: 1 1 calc(33.333% - 20px);
+    background: #f9f9fb;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: start;
+}
+
+.detail-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.detail-card p {
+    font-size: 14px;
+    color: #777;
+}
+
+
+@media (max-width: 768px) {
+    .detail-card {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-card {
+        flex: 1 1 100%;
+    }
+}
+#profile-img{
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+}
+.profile-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+button{
+    background-color: skyblue;
+    border: none;
+    color: white;
+    font-weight: bolder;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+}
+.button:hover {
+    background: none;
+    color:  blue;
+  }
+  .edit-btn:hover {
+    background: none;
+    color: grey;
+  }
+  .delete-btn:hover {
+    background-color: black;
+    color:  #eb2f06;
+  }
+  .delete-btn{
+    background-color: #eb2f06;
+    color:  white;
+  }
+  
+    </style>
+</head>
+<body>
+    <div class="container">
+      <h2>Feed</h2>
+      {% for p in post %}
+      <div class="detail-card">
+        <div class="profile-details">
+            <img src="{{p.author.profile.profile_picture.url}}" alt="Profile Picture" id='profile-img'><h2>Posted by {{p.author}}</h2>
+        </div>
+        
+        <p style="text-align: justify;"><strong>Job Title:</strong> {{ p.job_title }}<br><br>
+            <strong>Job Company:</strong> {{ p.job_company }}<br><br>
+            <strong>Skills required:</strong> {{ p.skill }}<br><br>
+            <strong>Job Description:</strong> {{ p.description }}<br><br>
+            <strong>Job Posted:</strong> {{ p.created_at }}<br><br>
+        </p>
+        <div class="profile-details">
+        <a href="{{p.job_link}}"><button type="button" class="button">Apply here</button></a>
+        {% if p.author == request.user %}
+        <a href="{% url 'post_update' p.pk %}" {% if not p.pk %}style="display:none;"{% endif %}> <button type="button" class="edit-btn">Edit</button> </a>
+        <a href="{% url 'post_delete' p.pk %}" {% if not p.pk %}style="display:none;"{% endif %}><button type="button" class="delete-btn">Delete</button></a>
+        {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</body>
+</html>
